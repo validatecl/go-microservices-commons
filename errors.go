@@ -81,6 +81,7 @@ type WMError struct {
 	Errors     interface{}
 }
 
+// WMError .
 func (wm *WMError) Error() (msg string) {
 	if wm.Message == "" {
 		msg = "an error has ocurred"
