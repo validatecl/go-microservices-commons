@@ -73,12 +73,19 @@ func (c *CustomError) Error() string {
 	return fmt.Sprintf("Error : %v", c.Message)
 }
 
+type ErrItem struct {
+	Msg      string `json:"msg"`
+	Param    string `json:"param"`
+	Value    string `json:"value"`
+	Location string `json:"location"`
+}
+
 // WMError .
 type WMError struct {
 	Success    bool
 	Message    string
 	StatusCode int
-	Errors     interface{}
+	Errors     []*ErrItem
 }
 
 // WMError .
