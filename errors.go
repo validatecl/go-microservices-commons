@@ -72,3 +72,20 @@ type CustomError struct {
 func (c *CustomError) Error() string {
 	return fmt.Sprintf("Error : %v", c.Message)
 }
+
+// WMError .
+type WMError struct {
+	Success    bool
+	Message    string
+	StatusCode int
+	Errors     interface{}
+}
+
+func (wm *WMError) Error() (msg string) {
+	if wm.Message == "" {
+		msg = "an error has ocurred"
+	} else {
+		msg = wm.Message
+	}
+	return
+}
