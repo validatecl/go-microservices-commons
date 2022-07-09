@@ -80,7 +80,7 @@ func Error2Wrapper(err error) (status int, errBody interface{}) {
 		return ceErr.StatusCode, NewErrorWrapper(ceErr.Code, ceErr.Message)
 	case *WMError:
 		ceErr := err.(*WMError)
-		return ceErr.StatusCode, NewErrorWrapperWM(ceErr.Success, ceErr.Errors, ceErr.Docs)
+		return ceErr.StatusCode, NewErrorWrapperWM(ceErr.Success, ceErr.Errors, ceErr.Docs...)
 	default:
 		return http.StatusInternalServerError, NewErrorWrapper("500", err.Error())
 	}
