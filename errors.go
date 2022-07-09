@@ -86,7 +86,7 @@ type WMError struct {
 	StatusCode int
 	Message    string
 	Errors     []*ErrItem
-	Docs       []string `json:"docs,omitempty"`
+	Docs       []string
 }
 
 // WMError .
