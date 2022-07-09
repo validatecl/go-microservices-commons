@@ -83,17 +83,12 @@ type ErrItem struct {
 // WMError .
 type WMError struct {
 	Success    bool
-	Message    string
 	StatusCode int
 	Errors     []*ErrItem
+	Docs       string `json:"docs,omitempty"`
 }
 
 // WMError .
-func (wm *WMError) Error() (msg string) {
-	if wm.Message == "" {
-		msg = "an error has ocurred"
-	} else {
-		msg = wm.Message
-	}
-	return
+func (wm *WMError) Error() string {
+	return "an error has ocurred"
 }
