@@ -46,10 +46,9 @@ func NewErrorWrapper(code, message string, docs ...string) ErrorWrapper {
 
 //NewErrorWrapperWM crea un nuevo error wrapper
 func NewErrorWrapperWM(s bool, e []*ErrItem, docs ...*string) ErrorWrapperWM {
-
-	if len(docs) < 1 {
-		docs = []*string{StringPointer(DOCSURL)}
-	}
+	//if len(docs) < 1 {
+	//	docs = []*string{StringPointer(DOCSURL)}
+	//}
 
 	return ErrorWrapperWM{
 		Success: s,
