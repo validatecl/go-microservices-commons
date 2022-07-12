@@ -27,7 +27,7 @@ type ErrorWrapper struct {
 type ErrorWrapperWM struct {
 	Success bool       `json:"success"`
 	Errors  []*ErrItem `json:"errors"`
-	Docs    []string   `json:"docs,omitempty"`
+	Docs    []*string  `json:"docs,omitempty"`
 }
 
 //NewErrorWrapper crea un nuevo error wrapper
@@ -45,10 +45,10 @@ func NewErrorWrapper(code, message string, docs ...string) ErrorWrapper {
 }
 
 //NewErrorWrapperWM crea un nuevo error wrapper
-func NewErrorWrapperWM(s bool, e []*ErrItem, docs ...string) ErrorWrapperWM {
+func NewErrorWrapperWM(s bool, e []*ErrItem, docs ...*string) ErrorWrapperWM {
 
 	if len(docs) < 1 {
-		docs = []string{DOCSURL}
+		docs = []*string{StringPointer(DOCSURL)}
 	}
 
 	return ErrorWrapperWM{

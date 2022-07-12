@@ -4,6 +4,11 @@ import (
 	"fmt"
 )
 
+// StringPointer .
+func StringPointer(s string) *string {
+	return &s
+}
+
 //InputError error de input de services
 type InputError struct {
 	Message string
@@ -74,10 +79,10 @@ func (c *CustomError) Error() string {
 }
 
 type ErrItem struct {
-	Msg      string `json:"msg"`
-	Param    string `json:"param"`
-	Value    string `json:"value"`
-	Location string `json:"location"`
+	Msg      *string `json:"msg,omitempty"`
+	Param    *string `json:"param,omitempty"`
+	Value    *string `json:"value,omitempty"`
+	Location *string `json:"location,omitempty"`
 }
 
 // WMError .
@@ -85,8 +90,8 @@ type WMError struct {
 	Success    bool
 	StatusCode int
 	Message    string
-	Errors     []*ErrItem
-	Docs       []string
+	Errors     []*ErrItem `json:"errors,omitempty"`
+	Docs       []*string  `json:"docs,omitempty"`
 }
 
 // WMError .
