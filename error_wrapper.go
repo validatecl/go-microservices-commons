@@ -7,6 +7,10 @@ import (
 	"reflect"
 )
 
+const (
+	ErrInternalServerError = "Internal server error"
+)
+
 //DOCSURL variable para setear DOCS de response
 var DOCSURL string = ""
 
@@ -81,8 +85,16 @@ func Error2Wrapper(err error) (status int, errBody interface{}) {
 		ceErr := err.(*WMError)
 		return ceErr.StatusCode, NewErrorWrapperWM(ceErr.Success, ceErr.Errors, ceErr.Docs...)
 	default:
-		return http.StatusInternalServerError, NewErrorWrapper("500", err.Error())
+		errs := []*ErrItem{
+			{
+				Msg: StringPointer(ErrInternalServerError),
+			},
+		}
+		return http.StatusInternalServerError, NewErrorWrapperWM(false, errs)
 	}
+	//default:
+	//	return http.StatusInternalServerError, NewErrorWrapper("500", err.Error())
+	//}
 }
 
 // UnmarshalError2Wrapper Convierte el error del Unmarshal a su equivalente HTTP
